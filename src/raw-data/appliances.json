@@ -1,0 +1,82 @@
+{
+  "Lights": [
+    { "name": "Flourescent Tube Light T12", "oPower": 43 },
+    { "name": "Flourescent Tube Light T8", "oPower": 38 },
+    { "name": "Flourescent Tube Light T5", "oPower": 28 },
+    { "name": "CFL-10W", "oPower": 14 },
+    { "name": "CFL-18W", "oPower": 23 },
+    { "name": "CFL-27W", "oPower": 34 },
+    { "name": "Incandescant Bulb", "oPower": 100 },
+    { "name": "Led Bulb-9W", "oPower": 10 },
+    { "name": "Led Tube Light-16W", "oPower": 18 }
+  ],
+  "Fans": [
+    { "name": "Ceiling Fan-1400mm sweep", "oPower": 94 },
+    { "name": "Wall-mounted Fan-400mm sweep", "oPower": 130 },
+    { "name": "Pedestal Fan-400 sweep", "oPower": 144 },
+    { "name": "Exhause Fan", "oPower": 50 },
+    { "name": "Kitchen Chimney", "oPower": 350 }
+  ],
+  "Refrigeration": [
+    { "name": "Refrigerator 100L-260L", "oPower": 166 },
+    { "name": "Refrigerator 260L-440L", "oPower": 280 },
+    { "name": "Refrigerator 440L+", "oPower": 424 },
+    { "name": "Chest Freezer 120L", "oPower": 210 },
+    { "name": "Air Conditioner (1T, 3Star)", "oPower": 1005 },
+    { "name": "Air Conditioner (1T, 5Star)", "oPower": 782 },
+    { "name": "Air Conditioner (1T, Inverter)", "oPower": 900 },
+    { "name": "Air Conditioner (1.5T, 3Star)", "oPower": 1507 },
+    { "name": "Air Conditioner (1.5T, 5Star)", "oPower": 1172 },
+    { "name": "Air Conditioner (1.5T, Inverter)", "oPower": 1200 },
+    { "name": "Air Conditioner (2T, 3Star)", "oPower": 2010 },
+    { "name": "Air Conditioner (2T, 5Star)", "oPower": 1563 },
+    { "name": "Air Conditioner (2T, Inverter)", "oPower": 1500 },
+    { "name": "Air Cooler", "oPower": 100 }
+  ],
+  "Kitchen Appliances": [
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 }
+  ],
+  "Electronic Gadgets": [
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 }
+  ],
+  "Household Appliances": [
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 }
+  ],
+  "Water Pumps": [
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 },
+    { "name": "", "oPower": 100 }
+  ]
+}

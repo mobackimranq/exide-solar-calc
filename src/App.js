@@ -1,13 +1,20 @@
-import React, { Component } from 'react'
-import App from 'base-shell/lib'
-import MUIConfig from 'material-ui-shell/lib'
-import merge from 'base-shell/lib/utils/config'
-import _config from './config'
+import React, { Component } from "react";
+import BaseShellApp from "base-shell/lib";
+import MUIConfig from "material-ui-shell/lib";
+import merge from "base-shell/lib/utils/config";
+import _config from "./config";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
-const config = merge(MUIConfig, _config)
+import "./App.css";
+const config = merge(MUIConfig, _config);
 
-export default class Demo extends Component {
+export default class App extends Component {
   render() {
-    return <App config={config} />
+    return (
+      <Provider store={store}>
+        <BaseShellApp config={config} />
+      </Provider>
+    );
   }
 }
