@@ -34,49 +34,50 @@
     { "name": "Air Cooler", "oPower": 100 }
   ],
   "Kitchen Appliances": [
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 }
+    { "name": "Blender", "oPower": 400 },
+    { "name": "Coffee Maker", "oPower": 800 },
+    { "name": "Induction Oven", "oPower": 2000 },
+    { "name": "Microwave Oven", "oPower": 1700 },
+    { "name": "OTG (Oven-Toaster-Gri11)- 60L", "oPower": 2000 },
+    { "name": "Air fryer- 21", "oPower": 1250 },
+    { "name": "Toaster", "oPower": 800 },
+    { "name": "Dishwasher", "oPower": 1500 }
   ],
+
   "Electronic Gadgets": [
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 }
+    { "name": "Colour TV (CRT)- 25\"", "oPower": 150 },
+    { "name": "LED TV-22\"", "oPower": 24 },
+    { "name": "LED TV-32\"/39\"", "oPower": 47 },
+    { "name": "LED TV-40\"/43\"", "oPower": 55 },
+    { "name": "LED TV- 48\"", "oPower": 78 },
+    { "name": "LED TV- 50\"/55\"", "oPower": 80 },
+    { "name": "LED TV- 65\"", "oPower": 130 },
+    { "name": "LED 75\"", "oPower": 157 },
+    { "name": "LED TV- 82\"", "oPower": 295 },
+    { "name": "Stereo System w/ su bwoofer", "oPower": 100 },
+    { "name": "WiFi Router", "oPower": 15 },
+    { "name": "LapTop Computer", "oPower": 65 },
+    { "name": "DeskTop Computer", "oPower": 130 },
+    { "name": "Gaming Computer", "oPower": 300 },
+    { "name": "Gaming Console", "oPower": 200 },
+    { "name": "Inkjet Printer", "oPower": 30 },
+    { "name": "Laser Printer", "oPower": 500 }
   ],
+
   "Household Appliances": [
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 }
+    { "name": "Washing Machine- Heater enabled", "oPower": 2200 },
+    { "name": "Washing Machine- Heater disabled", "oPower": 600 },
+    { "name": "Clothes Iron", "oPower": 1000 },
+    { "name": "Vacuum Cleaner", "oPower": 900 },
+    { "name": "Hair Dryer & curling iron", "oPower": 500 },
+    { "name": "Geyser", "oPower": 1000 }
   ],
+
   "Water Pumps": [
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 },
-    { "name": "", "oPower": 100 }
+    { "name": "DC pressure Pump", "oPower": 150 },
+    { "name": "Well Pumpo.5 HP", "oPower": 540 },
+    { "name": "Well Pump 1 HP", "oPower": 1070 },
+    { "name": "Well Pump 2 HP", "oPower": 2130 },
+    { "name": "Well Pump 3 HP", "oPower": 3190 }
   ]
 }

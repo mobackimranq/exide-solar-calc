@@ -10,7 +10,11 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 export default function CustomAccordion({ children, summary, startIcon }) {
   return (
     <div>
-      <Accordion elevation={3} className="form-card my-2">
+      <Accordion
+        TransitionProps={{ unmountOnExit: true }}
+        elevation={3}
+        className="form-card my-2"
+      >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <div className="d-flex align-items-center">
             {startIcon}

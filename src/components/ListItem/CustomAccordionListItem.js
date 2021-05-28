@@ -3,14 +3,19 @@ import { Checkbox, ListItem } from "@material-ui/core";
 import CustomNumberInput from "../Input/CustomNumberInput";
 
 class CustomAccordionListItem extends React.Component {
+  itemObject = this.props.itemObject;
+
   state = {
-    checked: false,
-    load: 0, //in Watts
-    quantity: 1,
+    checked: this.itemObject?.checked || false,
+    load: this.itemObject?.load || 0, //in Watts
+    quantity: this.itemObject?.quantity || 1,
   };
 
-  itemObject = this.props.itemObject;
   onChange = this.props.onChange;
+
+  componentDidMount() {
+    console.log(this.state);
+  }
 
   componentDidUpdate(prevProps, prevState) {
     if (
@@ -26,6 +31,10 @@ class CustomAccordionListItem extends React.Component {
     this.setState((state) => ({ checked: !state.checked }));
   };
 
+  onInputChange = (quantity) => {
+    this.setState({ quantity, checked: true });
+  };
+
   updateLoadState = () => {
     const { checked, quantity } = this.state;
     const { name, oPower } = this.itemObject;
@@ -36,7 +45,7 @@ class CustomAccordionListItem extends React.Component {
       load = 0;
     }
     if (typeof this.onChange === "function") {
-      this.onChange({ load, name });
+      this.onChange({ load, name, quantity, checked });
     }
   };
 
@@ -61,8 +70,8 @@ class CustomAccordionListItem extends React.Component {
           style={{ textAlign: "right" }}
         >{`[${this.itemObject.oPower}W]`}</p>
         <CustomNumberInput
-          onInputChange={(quantity) => this.setState({ quantity })}
-          defaultValue={1}
+          onInputChange={this.onInputChange}
+          defaultValue={this.state.quantity}
           center
           noMargin
           startAdornment="×"

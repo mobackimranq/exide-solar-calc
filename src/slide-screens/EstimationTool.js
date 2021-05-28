@@ -23,7 +23,7 @@ class EstimationTool extends React.Component {
         const value = obj[elem];
         if (typeof value === "object") {
           recursion(value);
-        } else if (typeof value === "number") {
+        } else if (elem === "load") {
           totalLoad += value;
         }
       }
@@ -55,7 +55,7 @@ class EstimationTool extends React.Component {
           Return
         </Button>
 
-        <Appliances onUpdate={(obj) => this.setState({ loadObject: obj })} />
+        <Appliances onUpdate={(loadObject) => this.setState({ loadObject })} />
         <Button
           onClick={this.handleEstimate}
           className="my-2 position-fixed"

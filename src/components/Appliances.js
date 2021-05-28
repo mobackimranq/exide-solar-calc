@@ -16,12 +16,12 @@ import CustomAccordionListItem from "components/ListItem/CustomAccordionListItem
 class Appliances extends React.Component {
   state = { loadObject: {} };
   render() {
+    const { loadObject } = this.state;
+
     const keys = Object.keys(appliances);
 
     return keys.map((key, i) => {
       const handleLoadChange = (item) => {
-        const { loadObject } = this.state;
-
         if (!item.load) {
           if (loadObject[key]) {
             delete loadObject[key][item.name];
@@ -33,7 +33,7 @@ class Appliances extends React.Component {
           if (!loadObject[key]) {
             loadObject[key] = {};
           }
-          loadObject[key][item.name] = item.load;
+          loadObject[key][item.name] = item;
         }
         this.props.onUpdate(loadObject);
         this.setState({ loadObject });
@@ -64,15 +64,21 @@ class Appliances extends React.Component {
           summary={key}
         >
           <List style={{ width: "100%" }}>
-            {appliances[key].map((value, index) => (
-              <React.Fragment key={index}>
-                <CustomAccordionListItem
-                  onChange={handleLoadChange}
-                  itemObject={value}
-                />
-                <Divider />
-              </React.Fragment>
-            ))}
+            {appliances[key].map(({ name, oPower }, index) => {
+              const applianceTypeObj = loadObject[key];
+              const itemObj =
+                (applianceTypeObj && applianceTypeObj[name]) || {};
+              return (
+                <React.Fragment key={index}>
+                  <CustomAccordionListItem
+                    onChange={handleLoadChange}
+                    itemObject={{ name, oPower, ...itemObj }}
+                  />
+
+                  <Divider />
+                </React.Fragment>
+              );
+            })}
           </List>
         </CustomAccordian>
       );

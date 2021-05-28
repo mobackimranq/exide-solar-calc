@@ -20,17 +20,23 @@ class MainInputForm extends Component {
     inverterType: this.recentInput?.inverterType,
   };
 
+  componentDidMount() {}
+
+  componentDidUpdate() {}
+
   handleCalculate = (e) => {
     const { submitCalculation, onCalculate } = this.props;
     const { load, loadDuration, dependency, location, inverterType } =
       this.state;
     if (load && loadDuration && dependency && location && inverterType) {
       const input = { load, loadDuration, dependency, location, inverterType };
-      const dailyEneryDemand = load * loadDuration * (dependency / 100); //in Wh
+      const dailyEneryDemand = Math.round(
+        load * loadDuration * (dependency / 100)
+      ); //in Wh
       const recPCSModel =
         inverterType === "MPPT" ? "Exide 5kVA 48V MPPT PCS" : null;
-      const numberOfPV = parseInt(dailyEneryDemand / (335 * sunlightHours));
-      const numberOfBatteries = parseInt(dailyEneryDemand / 400);
+      const numberOfPV = Math.ceil(dailyEneryDemand / (335 * sunlightHours));
+      const numberOfBatteries = Math.ceil(dailyEneryDemand / 400);
       const requiredArea = pVArea * numberOfPV;
       const recPVConfig = `335Wp x ${numberOfPV} Nos.`;
       const recBatteryConfig = `400Ah x ${numberOfBatteries} Nos.`;
@@ -53,45 +59,43 @@ class MainInputForm extends Component {
 
   render() {
     const { onOpenEstTool } = this.props;
+
     const { load, loadDuration, dependency, location, inverterType } =
       this.state;
 
-    function setStateState(item) {
-      this.setState({ item });
-    }
     return (
       <div className="my-3">
         <div className="mb-3 d-flex flex-column">
           <Paper elevation={3} className="p-2 pb-5 mb-3 form-card">
             <CustomNumberInput
               defaultValue={load}
-              onInputChange={setStateState}
+              onInputChange={(load) => this.setState({ load })}
               plural
               label="Enter Total Load"
               adornment="Watt"
             />
             <CustomNumberInput
               defaultValue={loadDuration}
-              onInputChange={setStateState}
+              onInputChange={(loadDuration) => this.setState({ loadDuration })}
               plural
               label="Enter Load Duration"
               adornment="Hour"
             />
             <CustomNumberInput
               defaultValue={dependency}
-              onInputChange={setStateState}
+              onInputChange={(dependency) => this.setState({ dependency })}
               label="Dependency on Solar Power"
               adornment="%"
             />
             <CustomDropdown
               defaultValue={location}
-              onSelect={setStateState}
+              onSelect={(location) => this.setState({ location })}
               label="Select Project Location"
               data={states}
             />
             <CustomDropdown
               defaultValue={inverterType}
-              onSelect={setStateState}
+              onSelect={(inverterType) => this.setState({ inverterType })}
               label="Select Inverter Type"
               data={inverterModels}
             />
