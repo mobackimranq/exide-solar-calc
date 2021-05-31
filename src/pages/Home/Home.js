@@ -1,20 +1,19 @@
 import Page from "material-ui-shell/lib/containers/Page";
 import React, { useState } from "react";
 import Scrollbar from "material-ui-shell/lib/components/Scrollbar/Scrollbar";
-import { useIntl } from "react-intl";
 import { Container } from "@material-ui/core";
-import MainInputForm from "slide-screens/MainInputForm";
+import MainInputForm from "pages/Home/slide-screens/MainInputForm";
 import CustomSlide from "components/Transition/CustomSlide";
-import CalculationResults from "slide-screens/CalculationResults";
-import EstimationTool from "slide-screens/EstimationTool";
+import CalculationResults from "pages/Home/slide-screens/CalculationResults";
 import "./style.css";
+import { useHistory } from "react-router-dom";
+import CustomPageWithLogo from "components/Page/CustomPageWithLogo";
 
 const HomePage = () => {
-  const intl = useIntl();
   const [showForm, setShowForm] = useState(true);
   const [pressedButton, setPressedButton] = useState("");
   const [showCalculation, setShowCalculation] = useState(false);
-  const [showLoadEstimation, setShowLoadEstimation] = useState(false);
+  const history = useHistory();
 
   function handleCalculate() {
     setShowForm(false);
@@ -27,7 +26,7 @@ const HomePage = () => {
         setShowCalculation(true);
         break;
       case "open-estimation-tool":
-        setShowLoadEstimation(true);
+        history.push("/estimation_tool");
         break;
       default:
         return;
@@ -38,9 +37,8 @@ const HomePage = () => {
     setShowForm(false);
     setPressedButton("open-estimation-tool");
   }
-
   return (
-    <Page pageTitle={intl.formatMessage({ id: "home" })}>
+    <CustomPageWithLogo>
       <Scrollbar className="scrollbar flex-grow-1">
         <Container
           maxWidth="sm"
@@ -67,18 +65,9 @@ const HomePage = () => {
               <CalculationResults onReturn={() => setShowCalculation(false)} />
             }
           />
-          <CustomSlide
-            show={showLoadEstimation}
-            onExited={() => {
-              setShowForm(true);
-            }}
-            component={
-              <EstimationTool onReturn={() => setShowLoadEstimation(false)} />
-            }
-          />
         </Container>
       </Scrollbar>
-    </Page>
+    </CustomPageWithLogo>
   );
 };
 export default HomePage;

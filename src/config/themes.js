@@ -8,9 +8,12 @@ import grey from "@material-ui/core/colors/grey";
 const themes = [
   {
     id: "default",
+    name: "Default",
   },
   {
     id: "red",
+    name: "Red",
+
     color: red[500],
     source: {
       palette: {
@@ -22,6 +25,8 @@ const themes = [
   },
   {
     id: "green",
+    name: "Green",
+
     color: green[500],
     source: {
       palette: {
@@ -33,6 +38,8 @@ const themes = [
   },
   {
     id: "purple",
+    name: "Purple",
+
     color: purple[500],
     source: {
       palette: {
@@ -44,6 +51,8 @@ const themes = [
   },
   {
     id: "orange",
+    name: "Orange",
+
     color: orange[500],
     source: {
       palette: {
@@ -55,11 +64,13 @@ const themes = [
   },
   {
     id: "grey",
+    name: "Grey",
+
     color: grey[500],
     source: {
       palette: {
         primary: grey,
-        secondary: red,
+        secondary: pink,
         error: red,
       },
     },

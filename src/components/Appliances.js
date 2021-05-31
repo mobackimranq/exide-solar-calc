@@ -65,6 +65,7 @@ class Appliances extends React.Component {
         >
           <List style={{ width: "100%" }}>
             {appliances[key].map(({ name, oPower }, index) => {
+              //get item state from object as being unmounted at "accordion close"
               const applianceTypeObj = loadObject[key];
               const itemObj =
                 (applianceTypeObj && applianceTypeObj[name]) || {};

@@ -1,12 +1,10 @@
 import React from "react";
 import { Button, Typography } from "@material-ui/core";
-import { ArrowBackIos } from "@material-ui/icons";
-
 import { connect } from "react-redux";
 import Appliances from "components/Appliances";
 import CustomizedDialog from "components/Dialogue/CustomizedDialog";
 
-class EstimationTool extends React.Component {
+class EstTool extends React.Component {
   state = {
     loadObject: {},
     modalOpen: false,
@@ -40,21 +38,18 @@ class EstimationTool extends React.Component {
     this.setState({ modalOpen: false });
   };
 
+  handleGoToCalc = () => {
+    const { totalLoad } = this.state;
+    if (totalLoad)
+      this.props.submitEstimatedToGlobalState({
+        input: { load: totalLoad },
+      });
+    this.props.handleExit();
+  };
+
   render() {
-    const { onReturn } = this.props;
     return (
       <div className="d-flex mb-5 flex-column ">
-        <Button
-          className="align-self-start "
-          variant="text"
-          color="secondary"
-          autoCapitalize="false"
-          startIcon={<ArrowBackIos />}
-          onClick={onReturn}
-        >
-          Return
-        </Button>
-
         <Appliances onUpdate={(loadObject) => this.setState({ loadObject })} />
         <Button
           onClick={this.handleEstimate}
@@ -73,14 +68,7 @@ class EstimationTool extends React.Component {
               variant="contained"
               color="primary"
               autoCapitalize="false"
-              onClick={() => {
-                const { totalLoad } = this.state;
-                if (totalLoad)
-                  this.props.submitEstimatedToGlobalState({
-                    input: { load: totalLoad },
-                  });
-                onReturn();
-              }}
+              onClick={this.handleGoToCalc}
             >
               Go To Project Calculator
             </Button>
@@ -105,4 +93,4 @@ const mapDispatchToProps = (dispatch) => ({
     }),
 });
 
-export default connect(null, mapDispatchToProps)(EstimationTool);
+export default connect(null, mapDispatchToProps)(EstTool);

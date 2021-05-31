@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Paper, Typography } from "@material-ui/core";
-import states from "../raw-data/states.json";
-import inverterModels from "../raw-data/inverterModels.json";
+import states from "../../../raw-data/states.json";
+import inverterModels from "../../../raw-data/inverterModels.json";
 import CustomDropdown from "components/Input/CustomDropdown";
 import CustomNumberInput from "components/Input/CustomNumberInput";
 import { connect } from "react-redux";
@@ -88,12 +88,16 @@ class MainInputForm extends Component {
               adornment="%"
             />
             <CustomDropdown
+              className="mt-3"
+              fontSize={18}
               defaultValue={location}
               onSelect={(location) => this.setState({ location })}
               label="Select Project Location"
               data={states}
             />
             <CustomDropdown
+              className="mt-3"
+              fontSize={18}
               defaultValue={inverterType}
               onSelect={(inverterType) => this.setState({ inverterType })}
               label="Select Inverter Type"

@@ -5,14 +5,12 @@ import { useAddToHomeScreen } from "base-shell/lib/providers/AddToHomeScreen";
 import { useAuth } from "base-shell/lib/providers/Auth";
 import { useConfig } from "base-shell/lib/providers/Config";
 import { useHistory, useRouteMatch } from "react-router-dom";
-import { useIntl } from "react-intl";
-import { useLocale } from "base-shell/lib/providers/Locale";
+
 import { useMenu } from "material-ui-shell/lib/providers/Menu";
 import { useTheme as useAppTheme } from "material-ui-shell/lib/providers/Theme";
 import getMenuItems from "../../config/menuItems";
 
 const Menu = (props) => {
-  const intl = useIntl();
   const history = useHistory();
   const match = useRouteMatch();
   const auth = useAuth();
@@ -20,14 +18,10 @@ const Menu = (props) => {
   const a2HSContext = useAddToHomeScreen();
   const { toggleThis, isMiniMode, isMiniSwitchVisibility } = menuContext || {};
   const { appConfig } = useConfig();
-  const { setLocale, locale = "en" } = useLocale();
   const themeContext = useAppTheme();
 
   const menuItems = getMenuItems({
-    intl,
-    locale,
-    updateLocale: setLocale,
-    // menuContext,
+    menuContext,
     themeContext,
     appConfig,
     a2HSContext,

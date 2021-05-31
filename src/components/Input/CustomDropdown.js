@@ -6,6 +6,10 @@ export default function CustomDropdown({
   data,
   onSelect,
   defaultValue,
+  filled,
+  className,
+  fontSize,
+  required,
 }) {
   const [selectedVal, setSelectedVal] = useState(defaultValue || "");
 
@@ -16,8 +20,13 @@ export default function CustomDropdown({
   }
 
   return (
-    <FormControl className="mt-3 pl-2" fullWidth>
-      <InputLabel style={{ fontSize: 18 }}>{label}</InputLabel>
+    <FormControl
+      required={required}
+      variant={filled ? "filled" : "standard"}
+      className={className}
+      fullWidth
+    >
+      <InputLabel style={{ fontSize }}>{label}</InputLabel>
       <Select value={selectedVal} onChange={handleChange}>
         <MenuItem value="">
           <em>None</em>

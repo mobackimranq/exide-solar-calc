@@ -22,6 +22,7 @@ class CalculationResults extends PureComponent {
           variant="text"
           color="secondary"
           autoCapitalize="false"
+          className="mt-2"
           startIcon={<ArrowBackIos />}
           onClick={onReturn}
         >
