@@ -5,6 +5,7 @@ import { Container } from "@material-ui/core";
 import CustomSlide from "components/Transition/CustomSlide";
 import EstTool from "pages/EstimationTool/slide-screens/EstTool";
 import { withRouter } from "react-router-dom";
+import "../../style.css";
 
 class EstimationTool extends Component {
   state = {

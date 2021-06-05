@@ -13,7 +13,7 @@ export default function CustomAccordion({ children, summary, startIcon }) {
       <Accordion
         TransitionProps={{ unmountOnExit: true }}
         elevation={3}
-        className="form-card my-2"
+        className="form-card my-1"
       >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <div className="d-flex align-items-center">
@@ -21,7 +21,7 @@ export default function CustomAccordion({ children, summary, startIcon }) {
             <Typography variant="h6">{summary}</Typography>
           </div>
         </AccordionSummary>
-        <AccordionDetails>{children}</AccordionDetails>
+        <AccordionDetails className="p-0">{children}</AccordionDetails>
       </Accordion>
     </div>
   );

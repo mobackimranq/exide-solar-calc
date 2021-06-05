@@ -80,12 +80,14 @@ class MainInputForm extends Component {
               plural
               label="Enter Load Duration"
               adornment="Hour"
+              max={24}
             />
             <CustomNumberInput
               defaultValue={dependency}
               onInputChange={(dependency) => this.setState({ dependency })}
               label="Dependency on Solar Power"
               adornment="%"
+              max={100}
             />
             <CustomDropdown
               className="mt-3"

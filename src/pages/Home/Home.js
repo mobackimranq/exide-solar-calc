@@ -1,11 +1,10 @@
-import Page from "material-ui-shell/lib/containers/Page";
 import React, { useState } from "react";
 import Scrollbar from "material-ui-shell/lib/components/Scrollbar/Scrollbar";
 import { Container } from "@material-ui/core";
 import MainInputForm from "pages/Home/slide-screens/MainInputForm";
 import CustomSlide from "components/Transition/CustomSlide";
 import CalculationResults from "pages/Home/slide-screens/CalculationResults";
-import "./style.css";
+import "../../style.css";
 import { useHistory } from "react-router-dom";
 import CustomPageWithLogo from "components/Page/CustomPageWithLogo";
 

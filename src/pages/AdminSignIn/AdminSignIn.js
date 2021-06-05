@@ -1,5 +1,4 @@
 import Button from "@material-ui/core/Button";
-import Page from "material-ui-shell/lib/containers/Page";
 import Paper from "@material-ui/core/Paper";
 import React, { useState } from "react";
 import Typography from "@material-ui/core/Typography";

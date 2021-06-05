@@ -14,7 +14,7 @@ class EstTool extends React.Component {
   componentDidUpdate() {}
 
   sumUpLoad = (object) => {
-    let totalLoad = 0;
+    let powerConsumed = 0; //PER DAY
     recursion(object);
     function recursion(obj) {
       for (let elem in obj) {
@@ -22,11 +22,11 @@ class EstTool extends React.Component {
         if (typeof value === "object") {
           recursion(value);
         } else if (elem === "load") {
-          totalLoad += value;
+          powerConsumed += +(value * obj.useHours);
         }
       }
     }
-    return totalLoad;
+    return +(powerConsumed / 24).toFixed(3);
   };
 
   handleEstimate = () => {
@@ -42,7 +42,7 @@ class EstTool extends React.Component {
     const { totalLoad } = this.state;
     if (totalLoad)
       this.props.submitEstimatedToGlobalState({
-        input: { load: totalLoad },
+        input: { load: totalLoad, loadDuration: 24 },
       });
     this.props.handleExit();
   };
@@ -76,7 +76,7 @@ class EstTool extends React.Component {
           title="Estimated Load"
         >
           <Typography>
-            Estimated Maximum Load for Your Project is:
+            Estimated per Day Average Load for Your Project is:
             <strong> {this.state.totalLoad} Watts</strong>
           </Typography>
         </CustomizedDialog>
