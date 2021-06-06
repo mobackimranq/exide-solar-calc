@@ -30,8 +30,13 @@ class EstTool extends React.Component {
   };
 
   handleEstimate = () => {
-    const totalLoad = this.sumUpLoad(this.state.loadObject);
+    const { loadObject } = this.state;
+    const totalLoad = this.sumUpLoad(loadObject);
     this.setState({ modalOpen: true, totalLoad });
+
+    if (totalLoad > 0) {
+      this.props.submitToEstimations({ ...loadObject });
+    }
   };
 
   closeModal = (e) => {
@@ -41,7 +46,7 @@ class EstTool extends React.Component {
   handleGoToCalc = () => {
     const { totalLoad } = this.state;
     if (totalLoad)
-      this.props.submitEstimatedToGlobalState({
+      this.props.submitToCalculations({
         input: { load: totalLoad, loadDuration: 24 },
       });
     this.props.handleExit();
@@ -86,9 +91,14 @@ class EstTool extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  submitEstimatedToGlobalState: (payload) =>
+  submitToCalculations: (payload) =>
     dispatch({
       type: "ADD_CALCULATION",
+      payload,
+    }),
+  submitToEstimations: (payload) =>
+    dispatch({
+      type: "ADD_ESTIMATION",
       payload,
     }),
 });

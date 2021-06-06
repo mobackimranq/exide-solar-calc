@@ -11,8 +11,9 @@ import CustomTextFeild from "components/Input/CustomTextFeild";
 import CustomDropdown from "components/Input/CustomDropdown";
 import states from "../../raw-data/states.json";
 import CustomPageWithLogo from "components/Page/CustomPageWithLogo";
+import { connect } from "react-redux";
 
-const SignIn = () => {
+const SignIn = ({ submitUserToGlobalState }) => {
   const history = useHistory();
   const [name, setName] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -23,13 +24,15 @@ const SignIn = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    authenticate({
+    const userObj = {
       displayName: name || "User",
       email: userEmail,
       phone,
       location,
       userType: "customer",
-    });
+    };
+    authenticate({ ...userObj });
+    submitUserToGlobalState({ ...userObj });
   }
 
   const authenticate = (user) => {
@@ -101,4 +104,14 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+function mapDispatchToProps(dispatch) {
+  return {
+    submitUserToGlobalState: (payload) =>
+      dispatch({
+        type: "UPDATE_USER",
+        payload,
+      }),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(SignIn);

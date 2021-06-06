@@ -13,8 +13,9 @@ import { useAuth } from "base-shell/lib/providers/Auth";
 import { useQuestions } from "material-ui-shell/lib/providers/Dialogs/Question";
 import ImgageUploadDialog from "material-ui-shell/lib/containers/ImageUploadDialog";
 import CenteredContainer from "components/Container/CenteredContainer";
+import { connect } from "react-redux";
 
-const MyAccount = () => {
+const MyAccount = ({ submitUserToGlobalState }) => {
   const { openDialog } = useQuestions();
 
   const { auth, updateAuth, setAuth } = useAuth();
@@ -43,7 +44,9 @@ const MyAccount = () => {
   };
 
   const handleSave = async () => {
-    updateAuth({ ...auth, displayName, photoURL, email, phone });
+    const updatedUser = { displayName, email, phone };
+    updateAuth({ ...auth, ...updatedUser, photoURL });
+    submitUserToGlobalState({ ...updatedUser });
   };
 
   const openDeleteDialog = () => {
@@ -193,4 +196,14 @@ const MyAccount = () => {
   );
 };
 
-export default MyAccount;
+function mapDispatchToProps(dispatch) {
+  return {
+    submitUserToGlobalState: (payload) =>
+      dispatch({
+        type: "UPDATE_USER",
+        payload,
+      }),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(MyAccount);

@@ -1,18 +1,16 @@
 import { createStore, combineReducers } from "redux";
-
-function calculationReducer(state = [], action) {
-  switch (action.type) {
-    case "ADD_CALCULATION":
-      return [...state, action.payload];
-    default:
-      return state;
-  }
-}
+import { calculationReducer } from "./reducers/calculationReducer";
+import { estimationReducer } from "./reducers/estimationReducer";
+import { userReducer } from "./reducers/userReducer";
 
 const rootReducer = combineReducers({
   calculationsArray: calculationReducer,
+  estimationsArray: estimationReducer,
+  user: userReducer,
 });
 
 const store = createStore(rootReducer);
+
+store.subscribe(() => console.log(JSON.stringify(store.getState())));
 
 export { store };

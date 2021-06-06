@@ -1,0 +1,96 @@
+{
+  "calculationsArray": [
+    {
+      "input": {
+        "load": 3203,
+        "loadDuration": 24,
+        "dependency": 100,
+        "location": "DADRA and NAGAR HAVELI",
+        "inverterType": "MPPT"
+      },
+      "result": {
+        "dailyEneryDemand": 76872,
+        "recPCSModel": "Exide 5kVA 48V MPPT PCS",
+        "numberOfBatteries": 193,
+        "numberOfPV": 39,
+        "recPVConfig": "335Wp x 39 Nos.",
+        "recBatteryConfig": "400Ah x 193 Nos.",
+        "requiredArea": 39
+      }
+    }
+  ],
+  "estimationsArray": [
+    {
+      "Lights": {
+        "Flourescent Tube Light T12": {
+          "load": 43,
+          "name": "Flourescent Tube Light T12",
+          "quantity": 1,
+          "checked": true,
+          "useHours": 24
+        }
+      },
+      "Fans": {
+        "Ceiling Fan-1400mm sweep": {
+          "load": 94,
+          "name": "Ceiling Fan-1400mm sweep",
+          "quantity": 1,
+          "checked": true,
+          "useHours": 24
+        }
+      },
+      "Refrigeration": {
+        "Refrigerator 100L-260L": {
+          "load": 166,
+          "name": "Refrigerator 100L-260L",
+          "quantity": 1,
+          "checked": true,
+          "useHours": 24
+        }
+      },
+      "Kitchen Appliances": {
+        "Blender": {
+          "load": 400,
+          "name": "Blender",
+          "quantity": 1,
+          "checked": true,
+          "useHours": 24
+        }
+      },
+      "Electronic Gadgets": {
+        "Colour TV (CRT)- 25\"": {
+          "load": 150,
+          "name": "Colour TV (CRT)- 25\"",
+          "quantity": 1,
+          "checked": true,
+          "useHours": 24
+        }
+      },
+      "Household Appliances": {
+        "Washing Machine- Heater enabled": {
+          "load": 2200,
+          "name": "Washing Machine- Heater enabled",
+          "quantity": 1,
+          "checked": true,
+          "useHours": 24
+        }
+      },
+      "Water Pumps": {
+        "DC pressure Pump": {
+          "load": 150,
+          "name": "DC pressure Pump",
+          "quantity": 1,
+          "checked": true,
+          "useHours": 24
+        }
+      }
+    }
+  ],
+  "user": {
+    "displayName": "Test User",
+    "email": "test@test.com",
+    "phone": "9999999999",
+    "location": "MIZORAM",
+    "userType": "customer"
+  }
+}

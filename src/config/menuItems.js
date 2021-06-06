@@ -12,8 +12,13 @@ import {
 } from "@material-ui/icons";
 import Description from "@material-ui/icons/Description";
 import allThemes from "./themes";
+import { store } from "../store/store";
 
-const getMenuItems = (props) => {
+function clearUserData() {
+  store.dispatch({ type: "CLEAR" });
+}
+
+function getMenuItems(props) {
   const { menuContext, themeContext, a2HSContext, auth: authData } = props;
 
   const { isAuthMenuOpen } = menuContext;
@@ -50,6 +55,7 @@ const getMenuItems = (props) => {
         onClick: isAuthorised
           ? () => {
               setAuth({ isAuthenticated: false });
+              clearUserData();
             }
           : () => {},
         visible:
@@ -75,6 +81,7 @@ const getMenuItems = (props) => {
         onClick: isAuthorised
           ? () => {
               setAuth({ isAuthenticated: false });
+              clearUserData();
             }
           : () => {},
       },
@@ -131,5 +138,5 @@ const getMenuItems = (props) => {
       leftIcon: <GetApp />,
     },
   ];
-};
+}
 export default getMenuItems;
