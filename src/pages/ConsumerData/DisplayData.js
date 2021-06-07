@@ -7,7 +7,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import mockData from "../../raw-data/schema/userData.json";
-
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
+import { CloudDownload } from "@material-ui/icons";
 const columns = [
   { id: "srNo", label: "" },
   { id: "name", label: "Name" },
@@ -44,7 +45,7 @@ export default function StickyHeadTable() {
   return (
     <div className="d-flex flex-column">
       <TableContainer style={{ maxHeight: "60vh" }}>
-        <Table stickyHeader aria-label="sticky table">
+        <Table stickyHeader id="consumerDataTable" aria-label="sticky table">
           <TableHead>
             <TableRow>
               {columns.map((column, index) => (
@@ -90,6 +91,17 @@ export default function StickyHeadTable() {
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
+      <hr className="m-0" />
+      <div className="align-self-end ">
+        click here to download as xls
+        <ReactHTMLTableToExcel
+          className="m-1 rounded border-none"
+          table="consumerDataTable"
+          filename="consumer data"
+          sheet="consumers"
+          buttonText={<CloudDownload color="primary" />}
+        />
+      </div>
     </div>
   );
 }
