@@ -10,8 +10,9 @@ import { Container } from "@material-ui/core";
 import CenteredContainer from "components/Container/CenteredContainer";
 import CustomTextFeild from "components/Input/CustomTextFeild";
 import CustomPageWithLogo from "components/Page/CustomPageWithLogo";
+import { connect } from "react-redux";
 
-const AdminSignIn = () => {
+const AdminSignIn = ({ submitUserToGlobalState }) => {
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -29,6 +30,7 @@ const AdminSignIn = () => {
 
   const authenticate = (user) => {
     setAuth({ isAuthenticated: true, ...user });
+    submitUserToGlobalState({ ...user });
     toggleThis("isAuthMenuOpen", false);
 
     let _location = history.location;
@@ -83,4 +85,14 @@ const AdminSignIn = () => {
   );
 };
 
-export default AdminSignIn;
+function mapDispatchToProps(dispatch) {
+  return {
+    submitUserToGlobalState: (payload) =>
+      dispatch({
+        type: "UPDATE_USER",
+        payload,
+      }),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(AdminSignIn);

@@ -1,16 +1,16 @@
 const USER = "auth";
 
-const initialState = [];
+const initialState = null;
 const storedState =
   JSON.parse(window.localStorage.getItem(USER)) || initialState;
 
-function userReducer(state = storedState, action) {
+function userReducer(state = storedState, { type, payload }) {
   delete state?.photoURL;
   delete state?.isAuthenticated;
 
-  switch (action.type) {
+  switch (type) {
     case "UPDATE_USER":
-      return { ...state, ...action.payload };
+      return { ...state, ...payload };
     case "CLEAR":
       return initialState;
     default:

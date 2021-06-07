@@ -1,0 +1,35 @@
+[
+  {
+    "name": "test",
+    "phone": "9999999999",
+    "email": "test@test.com",
+    "location": "ANDAMAN and NICOBAR ISLANDS",
+    "load": 1200,
+    "loadDuration": 15,
+    "dependency": 100,
+    "projectLocation": "ANDAMAN and NICOBAR ISLANDS",
+    "inverterType": "MPPT"
+  },
+  {
+    "name": "test",
+    "phone": "9999999999",
+    "email": "test@test.com",
+    "location": "ANDAMAN and NICOBAR ISLANDS",
+    "load": 1200,
+    "loadDuration": 15,
+    "dependency": 100,
+    "projectLocation": "ANDAMAN and NICOBAR ISLANDS",
+    "inverterType": "MPPT"
+  },
+  {
+    "name": "test",
+    "phone": "9999999999",
+    "email": "test@test.com",
+    "location": "ANDAMAN and NICOBAR ISLANDS",
+    "load": 1200,
+    "loadDuration": 15,
+    "dependency": 100,
+    "projectLocation": "ANDAMAN and NICOBAR ISLANDS",
+    "inverterType": "MPPT"
+  }
+]

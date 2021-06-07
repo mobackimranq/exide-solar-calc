@@ -6,93 +6,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
-
-const mockdata = [
-  {
-    name: "test",
-    phone: "21235465",
-    email: "test@email.com",
-    location: "Goa",
-    appliancesData: [{ name: "fan", watt: "45" }],
-  },
-  {
-    name: "test",
-    phone: "9999999999",
-    email: "test@email.com",
-    location: "Goa",
-    appliancesData: [{ name: "fan", watt: "45" }],
-  },
-  {
-    name: "test",
-    phone: "21235465",
-    email: "tejjjjjjjjjjjjjjjst@email.com",
-    location: "Goa",
-    appliancesData: [{ name: "fan", watt: "45" }],
-  },
-  {
-    name: "tehhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhst",
-    phone: "21235465",
-    email: "test@email.com",
-    location: "Goa",
-    appliancesData: [{ name: "fan", watt: "45" }],
-  },
-  {
-    name: "test",
-    phone: "21235465",
-    email: "test@email.com",
-    location: "Gohhhhhhhhhhhhhhhhhhhhha",
-    appliancesData: [{ name: "fan", watt: "45" }],
-  },
-  {
-    name: "test",
-    phone: "21235465",
-    email: "test@email.com",
-    location: "Goa",
-    appliancesData: [{ name: "fan", watt: "45" }],
-  },
-  {
-    name: "test",
-    phone: "21235465",
-    email: "test@email.com",
-    location: "Goa",
-    appliancesData: [{ name: "fan", watt: "45" }],
-  },
-  {
-    name: "test",
-    phone: "21235465",
-    email: "test@email.com",
-    location: "Goa",
-    appliancesData: [{ name: "fan", watt: "45" }],
-  },
-  {
-    name: "test",
-    phone: "21235465",
-    email: "test@email.com",
-    location: "Goa",
-    appliancesData: [{ name: "fan", watt: "45" }],
-  },
-  {
-    name: "test",
-    phone: "21235465",
-    email: "test@email.com",
-    location: "Goa",
-    appliancesData: [{ name: "fan", watt: "45" }],
-  },
-  {
-    name: "test",
-    phone: "21235465",
-    email: "test@email.com",
-    location: "Goa",
-    appliancesData: [{ name: "fan", watt: "45" }],
-  },
-  {
-    name: "test",
-    phone: "21235465",
-    email: "test@email.com",
-    location: "Goa",
-    appliancesData: [{ name: "fan", watt: "45" }],
-  },
-];
+import CustomizedDialog from "components/Dialogue/CustomizedDialog";
+import mockData from "../../raw-data/schema/userData.json";
 
 const columns = [
   { id: "srNo", label: "" },
@@ -100,14 +15,20 @@ const columns = [
   { id: "phone", label: "Phone" },
   { id: "email", label: "Email" },
   { id: "location", label: "Location" },
-  { id: "appliancesData", label: "Appliances Data" },
+  { id: "load", label: "Total Load (watt)" },
+  { id: "loadDuration", label: "Load Duration (hrs)" },
+  { id: "dependency", label: "Dependency (%)" },
+  { id: "projectLocation", label: "Project Location" },
+  { id: "inverterType", label: "Inverter Type" },
 ];
 
 export default function StickyHeadTable() {
-  const [data, setData] = useState(mockdata);
+  const [data, setData] = useState(mockData);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    setData(mockdata);
+    setData(mockData);
   }, []);
 
   const [page, setPage] = React.useState(0);
@@ -121,6 +42,7 @@ export default function StickyHeadTable() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
   if (data == null) return <p>Loading...</p>;
 
   return (
@@ -130,7 +52,7 @@ export default function StickyHeadTable() {
           <TableHead>
             <TableRow>
               {columns.map((column, index) => (
-                <TableCell key={index} align={column.align}>
+                <TableCell size="small" key={index} align={column.align}>
                   {column.label}
                 </TableCell>
               ))}
@@ -141,14 +63,25 @@ export default function StickyHeadTable() {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, i) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={i}>
+                  <TableRow
+                    onClick={() => {
+                      setSelectedUser(row);
+                      setShowModal(true);
+                    }}
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={i}
+                  >
                     {columns.map((column, index) => {
-                      let value = row[column.id] || i + 1;
-                      if (typeof value === "object") {
-                        value = JSON.stringify(value);
-                      }
+                      const value = row[column.id] || i + 1;
                       return (
-                        <TableCell key={index} align={column.align}>
+                        <TableCell
+                          className={column.id === "name" && "text-capitalize"}
+                          size="small"
+                          key={index}
+                          align={column.align}
+                        >
                           {column.format && typeof value === "number"
                             ? column.format(value)
                             : value}
@@ -161,7 +94,6 @@ export default function StickyHeadTable() {
           </TableBody>
         </Table>
       </TableContainer>
-
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
@@ -171,6 +103,14 @@ export default function StickyHeadTable() {
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
+      <CustomizedDialog
+        open={showModal}
+        handleClose={() => {
+          setShowModal(false);
+        }}
+      >
+        <div>{JSON.stringify(selectedUser)}</div>
+      </CustomizedDialog>
     </div>
   );
 }
