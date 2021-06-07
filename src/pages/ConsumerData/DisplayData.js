@@ -6,7 +6,6 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
-import CustomizedDialog from "components/Dialogue/CustomizedDialog";
 import mockData from "../../raw-data/schema/userData.json";
 
 const columns = [
@@ -24,9 +23,6 @@ const columns = [
 
 export default function StickyHeadTable() {
   const [data, setData] = useState(mockData);
-  const [selectedUser, setSelectedUser] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-
   useEffect(() => {
     setData(mockData);
   }, []);
@@ -63,16 +59,7 @@ export default function StickyHeadTable() {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, i) => {
                 return (
-                  <TableRow
-                    onClick={() => {
-                      setSelectedUser(row);
-                      setShowModal(true);
-                    }}
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                    key={i}
-                  >
+                  <TableRow hover role="checkbox" tabIndex={-1} key={i}>
                     {columns.map((column, index) => {
                       const value = row[column.id] || i + 1;
                       return (
@@ -103,14 +90,6 @@ export default function StickyHeadTable() {
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
-      <CustomizedDialog
-        open={showModal}
-        handleClose={() => {
-          setShowModal(false);
-        }}
-      >
-        <div>{JSON.stringify(selectedUser)}</div>
-      </CustomizedDialog>
     </div>
   );
 }
