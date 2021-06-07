@@ -7,6 +7,10 @@ import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import mockData from "../../raw-data/schema/userData.json";
+import { CloudDownload } from "@material-ui/icons";
+import { usePDF } from "@react-pdf/renderer";
+import { PDFDocument } from "./PDFDocument";
+import { Button } from "@material-ui/core";
 
 const columns = [
   { id: "srNo", label: "" },
@@ -14,8 +18,8 @@ const columns = [
   { id: "phone", label: "Phone" },
   { id: "email", label: "Email" },
   { id: "location", label: "Location" },
-  { id: "load", label: "Total Load (watt)" },
-  { id: "loadDuration", label: "Load Duration (hrs)" },
+  { id: "load", label: "Load (watts)" },
+  { id: "loadDuration", label: "Duration (hours)" },
   { id: "dependency", label: "Dependency (%)" },
   { id: "projectLocation", label: "Project Location" },
   { id: "inverterType", label: "Inverter Type" },
@@ -38,6 +42,13 @@ export default function StickyHeadTable() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  const [instance, updateInstance] = usePDF({
+    document: <PDFDocument data={data} columns={columns} />,
+  });
+
+  if (instance.loading) return <div>Loading ...</div>;
+
+  if (instance.error) return <div>Something went wrong: {instance.error}</div>;
 
   if (data == null) return <p>Loading...</p>;
 
@@ -90,6 +101,12 @@ export default function StickyHeadTable() {
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
+      <a href={instance.url} download="test.pdf" className="align-self-end ">
+        click here to download as pdf
+        <Button variant="contained" className="m-1" color="primary">
+          <CloudDownload color="inherit" />
+        </Button>
+      </a>
     </div>
   );
 }
