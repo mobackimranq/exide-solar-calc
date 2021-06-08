@@ -18,7 +18,7 @@ const columns = [
   { id: "phone", label: "Phone" },
   { id: "email", label: "Email" },
   { id: "location", label: "Location" },
-  { id: "load", label: "Load (watts)" },
+  { id: "load", label: "Load (watt)" },
   { id: "loadDuration", label: "Duration (hours)" },
   { id: "dependency", label: "Dependency (%)" },
   { id: "projectLocation", label: "Project Location" },
@@ -75,7 +75,9 @@ export default function StickyHeadTable() {
                       const value = row[column.id] || i + 1;
                       return (
                         <TableCell
-                          className={column.id === "name" && "text-capitalize"}
+                          className={
+                            column.id === "name" ? "text-capitalize" : ""
+                          }
                           size="small"
                           key={index}
                           align={column.align}
