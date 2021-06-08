@@ -11,8 +11,10 @@ import CenteredContainer from "components/Container/CenteredContainer";
 import CustomTextFeild from "components/Input/CustomTextFeild";
 import CustomPageWithLogo from "components/Page/CustomPageWithLogo";
 import { connect } from "react-redux";
+import { withSnackbar } from "notistack";
+import { ERORRS, SNACKBAR_OPTIONS } from "../../contstants";
 
-const AdminSignIn = ({ submitUserToGlobalState }) => {
+const AdminSignIn = ({ submitUserToGlobalState, enqueueSnackbar }) => {
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -21,6 +23,14 @@ const AdminSignIn = ({ submitUserToGlobalState }) => {
 
   function handleSubmit(event) {
     event.preventDefault();
+    if (username !== "admin") {
+      enqueueSnackbar(ERORRS.INVALID_USERNAME, SNACKBAR_OPTIONS);
+      return;
+    }
+    if (password !== "password") {
+      enqueueSnackbar(ERORRS.INVALID_PASSWORD, SNACKBAR_OPTIONS);
+      return;
+    }
     authenticate({
       displayName: "Admin",
       email: username,
@@ -95,4 +105,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(AdminSignIn);
+const Comp = withSnackbar(AdminSignIn);
+
+export default connect(null, mapDispatchToProps)(Comp);
