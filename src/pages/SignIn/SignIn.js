@@ -12,8 +12,11 @@ import CustomDropdown from "components/Input/CustomDropdown";
 import states from "../../raw-data/states.json";
 import CustomPageWithLogo from "components/Page/CustomPageWithLogo";
 import { connect } from "react-redux";
+import { withSnackbar } from "notistack";
+import { validateEmail, validateNumber } from "functions/validation.";
+import { ERORRS, SNACKBAR_OPTIONS } from "../../contstants";
 
-const SignIn = ({ submitUserToGlobalState }) => {
+const SignIn = ({ submitUserToGlobalState, enqueueSnackbar }) => {
   const history = useHistory();
   const [name, setName] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -24,6 +27,17 @@ const SignIn = ({ submitUserToGlobalState }) => {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    if (!validateNumber(phone)) {
+      enqueueSnackbar(ERORRS.INVALID_PHONE, SNACKBAR_OPTIONS);
+      return;
+    }
+    if (!validateEmail(userEmail)) {
+      enqueueSnackbar(ERORRS.INVALID_EMAIL, SNACKBAR_OPTIONS);
+
+      return;
+    }
+
     const userObj = {
       displayName: name || "User",
       email: userEmail,
@@ -70,7 +84,7 @@ const SignIn = ({ submitUserToGlobalState }) => {
                   value={phone}
                   onInput={(e) => setPhone(e.target.value)}
                   label="Phone"
-                  type="phone"
+                  type="tel"
                   autoComplete="phone"
                 />
                 <CustomTextFeild
@@ -114,4 +128,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(SignIn);
+const Comp = withSnackbar(SignIn);
+
+export default connect(null, mapDispatchToProps)(Comp);

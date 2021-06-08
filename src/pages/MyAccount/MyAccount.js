@@ -14,28 +14,36 @@ import { useQuestions } from "material-ui-shell/lib/providers/Dialogs/Question";
 import ImgageUploadDialog from "material-ui-shell/lib/containers/ImageUploadDialog";
 import CenteredContainer from "components/Container/CenteredContainer";
 import { connect } from "react-redux";
+import { withSnackbar } from "notistack";
+import { validateEmail, validateNumber } from "functions/validation.";
+import { ERORRS, SNACKBAR_OPTIONS } from "../../contstants";
+import { RotateLeft } from "@material-ui/icons";
 
-const MyAccount = ({ submitUserToGlobalState }) => {
+const MyAccount = ({
+  submitUserToGlobalState,
+  enqueueSnackbar,
+  clearUserData,
+}) => {
   const { openDialog } = useQuestions();
 
   const { auth, updateAuth, setAuth } = useAuth();
 
   const {
-    photoURL: currentPhoroURL = "",
+    photoURL: currentPhotoURL = "",
     displayName: currentDisplayName = "",
     email: currentEmail = "",
     phone: currentPhone = "",
   } = auth || {};
 
   const [displayName, setDisplayName] = useState(currentDisplayName);
-  const [photoURL, setPhotoURL] = useState(currentPhoroURL);
+  const [photoURL, setPhotoURL] = useState(currentPhotoURL);
   const [email, setEmail] = useState(currentEmail);
   const [phone, setPhone] = useState(currentPhone);
   const [isImageDialogOpen, setImageDialogOpen] = useState(false);
 
   const hasChange =
     displayName !== currentDisplayName ||
-    photoURL !== currentPhoroURL ||
+    photoURL !== currentPhotoURL ||
     email !== currentEmail ||
     phone !== currentPhone;
 
@@ -43,7 +51,23 @@ const MyAccount = ({ submitUserToGlobalState }) => {
     setPhotoURL(image);
   };
 
+  const resetChanges = () => {
+    setDisplayName(currentDisplayName);
+    setPhotoURL(currentPhotoURL);
+    setEmail(currentEmail);
+    setPhone(currentPhone);
+  };
+
   const handleSave = async () => {
+    if (!validateNumber(phone)) {
+      enqueueSnackbar(ERORRS.INVALID_PHONE, SNACKBAR_OPTIONS);
+      return;
+    }
+    if (!validateEmail(email)) {
+      enqueueSnackbar(ERORRS.INVALID_EMAIL, SNACKBAR_OPTIONS);
+
+      return;
+    }
     const updatedUser = { displayName, email, phone };
     updateAuth({ ...auth, ...updatedUser, photoURL });
     submitUserToGlobalState({ ...updatedUser });
@@ -62,6 +86,7 @@ const MyAccount = ({ submitUserToGlobalState }) => {
 
   const handleDelete = async (handleClose) => {
     setAuth({ isAuthenticated: false });
+    clearUserData();
     handleClose();
   };
 
@@ -89,7 +114,17 @@ const MyAccount = ({ submitUserToGlobalState }) => {
           >
             <Delete />
           </Fab>
-
+          <Zoom in={hasChange}>
+            <Fab
+              size="medium"
+              style={{ position: "absolute", bottom: -16, left: -16 }}
+              onClick={resetChanges}
+              color="secondary"
+              aria-label="reset"
+            >
+              <RotateLeft />
+            </Fab>
+          </Zoom>
           <Fab
             onClick={() => setImageDialogOpen(true)}
             style={{
@@ -203,7 +238,13 @@ function mapDispatchToProps(dispatch) {
         type: "UPDATE_USER",
         payload,
       }),
+    clearUserData: () =>
+      dispatch({
+        type: "CLEAR",
+      }),
   };
 }
 
-export default connect(null, mapDispatchToProps)(MyAccount);
+const Comp = withSnackbar(MyAccount);
+
+export default connect(null, mapDispatchToProps)(Comp);

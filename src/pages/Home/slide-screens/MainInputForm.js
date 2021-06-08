@@ -5,7 +5,7 @@ import inverterModels from "../../../raw-data/inverterModels.json";
 import CustomDropdown from "components/Input/CustomDropdown";
 import CustomNumberInput from "components/Input/CustomNumberInput";
 import { connect } from "react-redux";
-
+import { withSnackbar } from "notistack";
 const pVArea = 1; //square meter per piece
 const sunlightHours = 6;
 
@@ -25,7 +25,7 @@ class MainInputForm extends Component {
   componentDidUpdate() {}
 
   handleCalculate = (e) => {
-    const { submitCalculation, onCalculate } = this.props;
+    const { submitCalculation, onCalculate, enqueueSnackbar } = this.props;
     const { load, loadDuration, dependency, location, inverterType } =
       this.state;
     if (load && loadDuration && dependency && location && inverterType) {
@@ -53,7 +53,9 @@ class MainInputForm extends Component {
       onCalculate(e);
       submitCalculation({ input, result });
     } else {
-      alert("Please fill All fields");
+      enqueueSnackbar("Please Input All Fields", {
+        variant: "error",
+      });
     }
   };
 
@@ -139,4 +141,6 @@ const mapDispatchToProps = (dispatch) => ({
     }),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainInputForm);
+const Comp = withSnackbar(MainInputForm);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comp);

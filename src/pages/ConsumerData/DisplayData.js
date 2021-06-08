@@ -64,7 +64,9 @@ export default function StickyHeadTable() {
                       const value = row[column.id] || i + 1;
                       return (
                         <TableCell
-                          className={column.id === "name" && "text-capitalize"}
+                          className={
+                            column.id === "name" ? "text-capitalize" : ""
+                          }
                           size="small"
                           key={index}
                           align={column.align}
